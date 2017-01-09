@@ -1,0 +1,495 @@
+\documentclass[conference,compsoc]{IEEEtran}
+
+\ifCLASSOPTIONcompsoc
+ % IEEE Computer Society needs nocompress option
+ % requires cite.sty v4.0 or later (November 2003)
+ \usepackage[nocompress]{cite}
+\else
+ % normal IEEE
+ \usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+ % \usepackage[pdftex]{graphicx}
+ % declare the path(s) where your graphic files are
+ % \graphicspath{{../pdf/}{../jpeg/}}
+ % and their extensions so you won't have to specify these with
+ % every instance of \includegraphics
+ % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+ % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+ % will default to the driver specified in the system graphics.cfg if no
+ % driver is specified.
+ % \usepackage[dvips]{graphicx}
+ % declare the path(s) where your graphic files are
+ % \graphicspath{{../eps/}}
+ % and their extensions so you won't have to specify these with
+ % every instance of \includegraphics
+ % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+% \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+% \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).     ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Méthode de détection multi-modale de comportements anormaux\\ en sécurité informatique}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Baptiste Leterrier}
+\IEEEauthorblockA{silkke\\
+Email: baptiste.leterrier@silkke.com}
+\and
+\IEEEauthorblockN{Alexis Bitaillou}
+\IEEEauthorblockA{Polytech Nantes\\
+Email: alexis.bitaillou@etu.univ-nantes.fr}
+\and
+\IEEEauthorblockN{Benoît Parrein}
+\IEEEauthorblockA{Polytech Nantes\\
+Email: benoit.parrein@univ-nantes.fr} % polytech.univ-nantes.fr est un alias
+\and
+\IEEEauthorblockN{Remi Lehn}
+\IEEEauthorblockA{Polytech Nantes\\
+Email: remi.lehn@univ-nantes.fr}
+
+}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+L'authentification est une phase importante. Elle permet d'autoriser ou non un utilisateur à accéder à des ressources. Le mot de passe est le moyen d'authentification le plus courant en informatique. Malheureusement, il peut être vulnérable aux attaques. Afin d'augmenter la sécurité lors de l'authentification, nous cherchons un moyen d'authentification ne reposant pas uniquement sur le mot de passe.
+\end{abstract}
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+La sécurité en informatique est le deuxième aspect le plus important après la disponibilité. Les logiciels de sécurité habituels (antivirus, pare-feu, etc.) ne suffisent plus pour détecter les menaces. Par exemple, une personne ayant un accès physique peut contourner le couple identifiant - mot de passe et ainsi dérober des données. La détection de comportements anormaux permet d'ajouter une strate supplémentaire de sécurité. La détection de comportements essaye de déterminer si les actions de l'utilisateur sont conformes à un profil établi. Le profil peut contenir par exemple les processus, l'activité réseau, les appels systèmes. La difficulté intervient lors de la création du profil. Si le profil est statique, le moindre comportement légèrement déviant peut déclencher une alarme et augmenter le nombre de faux-positifs. S'il est trop dynamique, il risque de rester dans une phase d'apprentissage indéfiniment et fera perdre en granularité de détection (seuls les événements vraiment déviant seront détectés). Dans tous les cas, la détection de comportement anormaux relève d'un problème d'apprentissage et de décision.
+
+
+\section{Pr\'esentation de la probl\'ematique}
+
+\subsection{De la faiblesse des mots de passe}
+
+L'authentification sur un système informatique, se fait traditionnellement par un identifiant et un mot de passe. Ce mode d'authentification constitue le principal moyen d'authentification sur les systèmes informatiques. Sa simplicité a contribué à son adoption. Néanmoins, il est possible d'usurper l'identité de quelqu'un grâce à la connaissance de ces paramètres. En effet, certains identifiants sont standardisés comme les identifiants administrateurs, par exemple "root" sur les systèmes Unix. Malheureusement, le mot de passe est lui aussi attaquable. La puissance de calcul disponible a beaucoup augmenté. L'utilisation des cartes graphiques pour le "cracking" a diminué sensiblement le temps des attaques comme le montre \cite{5665047}. Il montre une réduction de 99.7\% du temps d'attaque par rapport à la force brute sur processeur.
+
+\subsubsection{Les précédentes tentatives}
+
+Diverses alternatives ont été étudiées et développées. Ces alternatives sont axées sur l'identification biométrique, l'authentification matérielle et d'autres éléments mémorisables. Par exemple, l'empreinte digitale peut être utilisée pour identifier et authentifier une personne. Mais l'empreinte digitale est une donnée personnelles, son utilisation est soumise à restriction. Le résultat n'est pas exact. Comme décrit dans \cite{10.1109/MC.2012.364} , l'identification biométrique évalue la probabilité qu'un échantillon soit proche d'autres échantillons de référence et prend une décision. Ces alternatives sont potentiellement complexes à mettre en place et ne garantissent pas nécessairement de résultats. Un système d'authentification seul est insuffisant. En effet, le contournement des systèmes d'authentification est inévitable. Même les systèmes biométriques sont contournables comme exposé dans \cite{duc2009your}.
+
+\subsubsection{A la fusion des techniques}
+
+A défaut de créer de nouvelles techniques, les recherches se portent la fusion de techniques existantes. Par exemple, dans \cite{7371386}, la dynamique de la frappe de clavier et la reconnaissance faciale sont utilisées. Les deux techniques ont des précisions différentes. La difficulté intervient lors de la fusion des données et de la prise de décision. Il faut pondérer le poids de chaque métrique pour aboutir à une tendance.
+
+\section{Plan de l'étude}
+
+Il existe déjà des papiers sur les différentes méthodes d'authentification.
+Le premier objectif est d'établir un comparatif des techniques existantes. Notre comparatif s'effectuera sur différents critères. Par exemple, les moyens techniques nécessaires, les nombres d'échantillons nécessaires à l'apprentissage, la précision sont des critères utilisables.
+
+
+
+Nous pourrons essayer de trouver de nouvelles méthodes. En effet, nous pouvons tenter de créer une méthode d'authentification. Toutes les méthodes n'ont pas été découvertes. Néanmoins, nos moyens sont limités. A défaut de créer une nouvelle méthode, nous pouvons fusionner des méthodes préexistantes.
+
+\section{État de l'art}
+
+\subsection{Dynamique des frappes de clavier}
+
+Le clavier est un des premiers périphérique d'un ordinateur. Son principe n'a pas évolué depuis des décennies. La frappe (dans son rythme, sa force) varie d'une personne à une autre, ce qui fait que notre frappe est unique, comme nos mains par exemple.
+
+\subsubsection{Présentation}
+
+Le clavier est présent sur quasiment sur tous les ordinateurs. De plus, la disposition des touches est relativement standardisée.
+L'utilisation de la frappe de clavier comme moyen d'identification n'est pas un concept "récent". En 1993, \cite{brown1993user} utilise ce concept pour ce qui semble la première fois. Ils mesurent le temps de pression et le temps de relâche de chaque touche. A partir de ces deux mesures, plusieurs métriques peuvent être calculées. La métrique plus évidente est la vitesse de frappe (pour un mot donné). La durée entre chaque pression peut être une métrique utilisable pour un même mot. Enfin, on peut calculer la durée de la pression.
+
+La dynamique des frappes n'est pas utilisable dès sa mise en place, un temps d'initialisation est requis. Un apprentissage est nécessaire pour utiliser la dynamique des frappes. La quantité d'échantillons dépend de la méthode de décision. La méthode de décision peut être statistique ou par réseau de neurones (comme dans \cite{7435705}).
+
+\subsubsection{Intérêt de la proposition}
+L'identification par la dynamique des frappes est une technique intéressante. Le clavier est un périphérique répandu. Il est donc plus facile d'intégrer cette technique sur des équipements existants. Certaines métriques restent valables même sur des claviers virtuels.
+
+Sur les systèmes dérivés de Unix, la mise en \oe{}uvre semble relativement simple. Dans \cite{brown1993user}, ils utilisent une application pour d'intercepter les événements depuis le serveur X.org.
+
+De nombreuses expérimentations ont déjà été effectué. La technique est donc relativement éprouvée. Les résultats sont généralement bons avec cette technique. La précision garantie est en moyenne proche des 80\%.
+
+\subsubsection{Limites de la proposition}
+L'identification par la dynamique des frappes n'a pas que des avantages. Comme le résume \cite{1341408}, les résultats sont très variables. Le taux est influencé par la méthode de décision. Comme le montre \cite{brown1993user}, parfois, il n'y a pas de vraie différence entre une méthode de décision triviale comme la distance géométrique et une méthode de décision plus complexe comme un réseau de neurones avec rétro-propagation. Dans l'article, la différence est d'environ 2\%. La différence d'écart peut se justifier dans ce cas par le faible nombre de couche du réseau de neurones, le nombre de participant ainsi que le nombre d'échantillons.
+
+Le nombre d'échantillons a une grande important et varie en fonction de la méthode de décision. Le nombre d'échantillons nécessaire n'est malheureusement pas prédéfini. De plus, la base d'apprentissage doit être régulièrement mise à jour. La dynamique frappe étant une donnée biométrique, elle dépend de l'état biologique de l'utilisateur à un moment t. L'âge, l'expérience, la santé de l'utilisateur peuvent modifier cet état et donc la précision de l'identification. Les effets d'un changement de modèle de clavier n'ont pas été évalué.
+
+Cette technique, si elle n'est pas encadrée, peut devenir dangereuse car il est possible de modifier le programme pour le transformer en enregistreur de frappes (keylogger).
+
+\subsection{Son des frappes de clavier} % A
+Une variation de la dynamique de frappe consiste à utiliser le son de la frappe. L'objectif est donc d'utiliser le son du clavier pour identifier une personne. Comme pour la dynamique de frappe de clavier, le son de la frappe permet d'obtenir des métriques aux valeurs "uniques" pour chaque personne.
+
+\subsubsection{Présentation}
+Le clavier est souvent présent avec un ordinateur. Lorsqu'un microphone est présent, on peut enregistrer le bruit de la frappe sur le clavier. \cite{7477360} utilise cette idée. La frappe au clavier est une caractéristique propre à chaque humain. Elle est fonction de du corps et en partie du clavier. L'objectif est d'enregistrer le son de la frappe du clavier pour un mot donné.
+Cette technique n'est pas utilisable instamment. En effet, une durée d'initialisation est nécessaire. L'apprentissage dépend de la méthode de décision.
+
+Le son des frappes de clavier n'a pas été beaucoup étudié. A notre connaissance, \cite{7477360} est le seul article traitant du sujet.
+
+\subsubsection{Intérêt de la proposition}
+Le son de la frappe de clavier peut être facilement intégré aux ordinateurs portables. En effet, la plupart des ordinateurs portables sont doté d'un microphone intégré. Pour les ordinateurs fixes, la situation est complexe. Tous les ordinateurs fixes n'ont pas de microphone.
+
+Les résultats des expérimentations sont bons. Dans \cite{7477360}, le moins bon résultat est 88\% de précision. Mais les tests sont effectués uniquement sur 4 groupes distincts.
+
+\subsubsection{Limites de la proposition}
+Cette technique a quelques inconvénients. La capture du son n'a pas été testé dans un milieu bruité. Le bruit pourrait diminuer la précision. Dans un environnement type "open space", le micro pourrait capturer le bruit d'un autre clavier.
+
+L'étude \cite{7477360} a testé avec un seul et unique clavier. Dans le cas où l'utilisateur n'a pas d'ordinateur déterminé, l'impact du changement de clavier n'a pas été mesuré.
+
+\subsection{Mouvement de la souris} % A
+Bien que crée après le clavier, la souris s'est imposé comme outil d'interface homme-machine. Le nombre de touches est limité, mais la souris transmet ces déplacements.
+
+\subsubsection{Présentation}
+Après l'utilisation du clavier, la souris est utilisée pour l'identification d'utilisateur. L'objectif est d'utiliser les déplacements, les accélérations et les clics effectués avec la souris.
+Les accélérations sont calculées à partir des mouvements. Cette technique n'est pas utilisable instamment. En effet, une durée d'initialisation est nécessaire. L'apprentissage dépend de la méthode de décision.
+La technique est relativement jeune car elle est utilisée que depuis quelques années.
+
+\subsubsection{Intérêt de la proposition}
+La technique est conceptuellement relativement simple. Intuitivement, il semble que si l'utilisateur est une personne relativement âgée, les accélérations de la souris seront faibles et de courte durée.
+
+Le matériel nécessaire pour la mise en \oe{}uvre de cette technique est relativement abordable et/ou disponible.
+
+En utilisation supplémentaire/complémentaire, l'utilisation de la souris prend plus d'intérêt. \cite{fridman2015multi} et \cite{7477228} l'utilisent en complément du clavier.
+
+\subsubsection{Limites de la proposition}
+Cette technique présentes quelques inconvénients. L'utilisation de la souris n'est disponible que dans un contexte d'identification continue. Il n'est pas pertinent de capturer des évènements sur une durée très courte. Au moins, le cas n'est pas évoqué dans \cite{7477228}.
+
+Dans \cite{7477228}, les résultats sont relativement décevants, la précision est bornée entre 45\% et 60\%. Cela implique la nécessité de l'utiliser en tant que technique complémentaire et/ou supplémentaire.
+
+Dans \cite{fridman2015multi}, le nombre d'évènements utilisés est relativement important. Le stockage de tous ces évènements doit avoir un coût. Le coût peut être en stockage et/ou en temps de collecte avant apprentissage.
+
+\subsection{Identification à partir des réseaux wifi} % B
+
+La diversification et la multiplicité des moyens d'interactions utilisés par les personnes souhaitant interagir avec le monde numérique ce sont depuis quelques années beaucoup d'accélérés.
+
+En témoigne l'augmentation des ventes de matériel biométrique simple où la diffusion des systèmes d'authentification avec jeton par exemple jeton RSA.
+
+Si des systèmes d'acquisition externe permettre en effet de récolter des informations d'identification ou d'authentification, il convient de constater que de nombreuses outils déjà présents dans le milieu personnel ou professionnel en informatique peuvent servir de vecteurs complémentaires d'acquisition de l'information et peuvent parfois même voir leur usage évoluer.
+
+\subsubsection{Présentation}
+
+La technologie WiFi est intégrée depuis plusieurs années dans le monde de l'informatique et aujourd'hui est de retour dans les innovations de par l'explosion de l'utilisation de périphériques mobiles (smartphones, tablettes) mais aussi de l'arrivée de l'internet des objets (IOT) \cite{wifialliance}
+
+La couverture lieu de travail et depuis longtemps une réalité mais on constate aujourd'hui l'acquisition de nouveau terrain notamment les villes par les offres de wifi gratuit ou encore la simplicité d'implémentation à la maison par les fonctions de routeur wifi offerts par les modems des principaux opérateurs.
+
+Le wifi s'appuie sur des ondes radios, il est possible de voir les points d'accès WiFi Hotspot comme des balises rappelant les radars. L'émission des ondes et leur captation par un système approprié ou le routeur en lui-même permet d'estimer la qualité du signal et donc de déduire la présence d'obstacles. Cette méthode est déjà utilisée pour optimiser le débit et la couverture du réseau en milieu clos \cite{1611.02049v1}.
+
+Si la surveillance des réseau wifi rend possible la localisation en intérieur de différents périphériques notamment grâce à leur adresse MAC, l'extension de la possibilité de détecter les obstacles a fait naître l'idée de l'utilisation des points d'accès wifi comme balise de détection de personne. 
+
+La surveillance des périphériques connectés ou non au réseau donne déjà une indication quant à la présence d'une personne, toutefois il n'assure pas que la personne est bien présente physiquement dans les lieux et impose de plus la mise en place d'une table de relation faisant le lien entre les personnes et les périphériques qu'elles possèdent.
+
+Utiliser le wifi comme support d'identification des personnes est une idée très récente reposant sur des travaux avant-gardistes en utilisant des technologies avancées. Ceci explique sa diffusion réduite et son aspect expérimental. 
+
+Ces travaux s'appuient sur les méthodes d'identification humaine originellement réservé au domaine biométrique (empreinte digitale, voix) et ont marqué une avancée importante dans le domaine de l'interaction homme-machine. \cite{1608.03430}
+
+L'identification humaine grâce aux canaux wifi ouvre la voie à une méthode moins intrusive que celles actuellement connues et nécessitant la présence proche de la personne ou provoquant un arrêt de son activité pour s'identifier. Une autre problématique est aussi la disponibilité des outils permettant la capture. 
+
+Si des essais ont été effectués avec des standards radar classiques, leur diffusion dans le domaine public ou professionnel reste limité au cercle des avertis. Utiliser le wifi comme support de capture permet donc de s'affranchir de cette contrainte et de disposer de tout un panel de points de collecte déjà déployés dans divers environnements (bureaux, maisons)
+ 
+\subsubsection{Présentation}
+
+Les mesures s'appuient sur les reliquat générés par une personne au niveau des ondes wifi. La corpulence la manière de se déplacer ou encore les gestes effectués permettre une différenciation précise entre divers individus.
+
+Cette approche permet une identification précise sans toutefois mettre en danger la vie privée comparée à d'autres méthodes.
+
+En effet les premières tentatives de collecte de l'attitude et du comportement basé sur les mouvements nécessitaient l'utilisation de caméras, ce qui impose des contraintes tels que le besoin de ligne de vue mais aussi la perte de vie privée de par la nécessité de capter continuellement l'attitude d'une personne.
+
+La notion pratique et aussi perdu par la nécessité de placer plusieurs caméras à différents endroits le Cousson retrouve alors augmenté quand bien même cette méthode a prouvé son efficacité.
+
+Ces travaux ont toutefois servi de point de départ à la constitution d'un ensemble de données permettant d'identifier les points de posture d'attitude et de mouvements clés à l'identification précise d'une personne.
+
+Cette utilisation du Wifi n'est toutefois pas nouvelle puisque des produits s'appuyant sur le wifi permettent déjà d'évaluer la chute de personne dans le milieu industriel.
+
+Plusieurs méthode et outils sont toutefois nécessaire à l'extraction d'informations.
+
+Le premier outil utilisé pour ses détections est le channel state information (CSI). Il permet d'étudier la manière d'un signal se propage dans un milieu connu en analysant par exemple les pertes de signal avec la distance.
+
+Le second outil est l'analyse en composantes principales. Issu du monde géométrique et statistiques cette méthode permet de sortir des informations principales d'un nuage de variables corrélées. Ici son application concernant la dispersion des ondes radio permet d'ordonner un nuage de multiples points. N'ayant pas grande importance ensemble, l'ACP mettra en exergue les tendances de dispersion menant à la constitution d'un modèle.
+
+La transformée en ondelettes discrète (DWT : discrete wevelet transform) permet de capturer la fréquence et la position de points dans le temps. Par transformations successives, il devient possible de reconstruire une image en deux ou trois dimensions.
+
+Enfin le Dynamic Time Warping (DTW) déformation temporelle dynamique permet la mesure de similarité entre deux suites. Cet algorithme sert notamment à combler les vides de captation possible dans un environnement bruyant radiologiquement.
+
+La combinaison de ces quatre outils associés à des interfaces wifi compatible permet la collecte de données, la suppression du bruit ambiant et l'extraction d'une onde correspondant à l'activité d'une personne.
+
+La capacité sommaire mais toutefois existante des ondes wifi à traverser les surfaces peu absorbante permet l'implantation de ces points de collecte en divers endroits accessible.
+
+De plus la corrélation entre une personne et son "bruit radio" n'est pas nécessaire.
+
+\subsubsection{Intérêts de la proposition}
+
+Cette méthode a été testée sur un panel de 9 personnes et indique des résultats très probants. La mise en place de cette solution requiert la mise en place de sondes, mais l'analyse des résultats peut-être fait grâce à une puissance de calcul limité. La création d'une signature initiale peut être fait relativement rapidement par un processus de calibration requérant que les personne effectuent une certaine suite de mouvements connus à l'avance par le système.
+
+La vie privée est aussi préservée de par l'absence de données identifiantes. Seule la corrélation entre les résultats et les personnes peut remettre en cause ce principe mais il a été prouvé que cela n'était pas nécessaire. La mesure servant de signature et donc à l'identification.
+
+\subsubsection{Limites de la proposition}
+
+La solution présentée met en avant certaines limites dans un environnement radio bruyant. La collecte est alors plus difficile et les résultats seront moins précis. Un travail supplémentaire de nettoyage peut être effectué mais avec un risque de perte de précision. 
+
+Les environnements avec beaucoup de personnes rendent aussi la capture des mouvements plus complexes puisque le système n'a pas conscience. De la multiplicité des personnes se focalisant exclusivement sur les mouvements défauts positifs peut-être relever. À noter aussi que ces travaux se focaliser exclusivement sur les attitudes durant la marche ce qui peut être non fiable dans un environnement professionnel ou les personnes sont assises à leur bureau.
+
+Enfin si ce système permet de différencier les personnes dans un environnement, il ne permet toutefois pas leur authentification. Il est donc insuffisant pour prétendre à être un moyen de sécuriser correctement une infrastructure.
+
+\section{Preuve de concept}
+Afin de tester nos hypothèses, une preuve de concept est en cours de développement.
+ Cette preuve de concept est composée de différents éléments. On peut le diviser en 3 parties (collecte, évaluation, exploitation). Un agent a été réalisé afin de collecter différentes métriques.
+ Il a été développé pour les environnements Microsoft Windows et Canonical Ubuntu 16.10.
+ Il permet notamment de récupérer les différentes frappes au clavier et de les corréler avec l'activité système, les processus etc.
+ Pour prendre une décision, nous développons une application permettant de réaliser un apprentissage.
+ 
+ Cette approche vise à identifier une corrélation en le rythme de frappe et l'activité de l'utilisateur, dans le but de créer une tendance permettant de l'identifier dans le futur.
+
+\section{Conclusion}
+Les premiers résultats ont permis d'aboutir sur un ensemble de données d'apprentissage. Cet ensemble est actuellement utilisé dans un réseau de neurones qui permettra de potentiellement établir une tendance servant à l'identification d'un utilisateur.
+
+%Sous Linux, l'approche diffère de par la recherche d'autres moyens d'apprentissage de par l'utilisation de librairies comme TensorFlow. Elle vise à explorer les méthodes d'apprentissages et de décisions existantes et d'en déduire la ou les plus efficaces.
+
+
+\bibliography{biblio} % <-- fichier .bib
+\bibliographystyle{IEEEtran}
+
+
+
+% that's all folks
+\end{document}
+
+
