@@ -58,7 +58,7 @@
 % graphicx was written by David Carlisle and Sebastian Rahtz. It is
 % required if you want graphics, photos, etc. graphicx.sty is already
 % installed on most LaTeX systems. The latest version and documentation
-% can be obtained at: 
+% can be obtained at:
 % http://www.ctan.org/pkg/graphicx
 % Another good source of documentation is "Using Imported Graphics in
 % LaTeX2e" by Keith Reckdahl which can be found at:
@@ -303,14 +303,13 @@ L'authentification est une phase importante. Elle permet d'autoriser ou non un u
 
 
 \section{Introduction}
-La sécurité en informatique est le deuxième aspect le plus important après la disponibilité. Les logiciels de sécurité habituels (antivirus, pare-feu, etc.) ne suffisent plus pour détecter les menaces. Par exemple, une personne ayant un accès physique peut contourner le couple identifiant - mot de passe et ainsi dérober des données. La détection de comportements anormaux permet d'ajouter une strate supplémentaire de sécurité. La détection de comportements essaye de déterminer si les actions de l'utilisateur sont conformes à un profil établi. Le profil peut contenir par exemple les processus, l'activité réseau, les appels systèmes. La difficulté intervient lors de la création du profil. Si le profil est statique, le moindre comportement légèrement déviant peut déclencher une alarme et augmenter le nombre de faux-positifs. S'il est trop dynamique, il risque de rester dans une phase d'apprentissage indéfiniment et fera perdre en granularité de détection (seuls les événements vraiment déviant seront détectés). Dans tous les cas, la détection de comportement anormaux relève d'un problème d'apprentissage et de décision.
+La sécurité en informatique est le deuxième aspect le plus important après la disponibilité. Les logiciels de sécurité habituels (antivirus, pare-feu, etc.) ne suffisent plus pour détecter les menaces. Par exemple, une personne ayant un accès physique peut contourner le couple identifiant - mot de passe et ainsi dérober des données. La détection de comportements anormaux permet d'ajouter une strate supplémentaire de sécurité. La détection de comportements essaye de déterminer si les actions de l'utilisateur sont conformes à un profil établi. Le profil peut contenir par exemple les processus, l'activité réseau, les appels systèmes. La difficulté intervient lors de la création du profil. Si le profil est statique, le moindre comportement légèrement déviant peut déclencher une alarme et augmenter le nombre de faux-positifs. S'il est trop dynamique, il risque de rester dans une phase d'apprentissage indéfiniment et fera perdre en granularité de détection (seuls les événements vraiment déviant seront détectés). Dans tous les cas, la détection de comportement anormaux relève d'un problème d'apprentissage et de décision. Nous proposons de faire un rapide état de l'art sur le sujet. A partir d'une sélection de méthodes, nous allons réaliser une preuve de concept.
 
-
-\section{Pr\'esentation de la probl\'ematique}
+\section{Présentation de la problématique}
 
 \subsection{De la faiblesse des mots de passe}
 
-L'authentification sur un système informatique, se fait traditionnellement par un identifiant et un mot de passe. Ce mode d'authentification constitue le principal moyen d'authentification sur les systèmes informatiques. Sa simplicité a contribué à son adoption. Néanmoins, il est possible d'usurper l'identité de quelqu'un grâce à la connaissance de ces paramètres. En effet, certains identifiants sont standardisés comme les identifiants administrateurs, par exemple "root" sur les systèmes Unix. Malheureusement, le mot de passe est lui aussi attaquable. La puissance de calcul disponible a beaucoup augmenté. L'utilisation des cartes graphiques pour le "cracking" a diminué sensiblement le temps des attaques comme le montre \cite{5665047}. Il montre une réduction de 99.7\% du temps d'attaque par rapport à la force brute sur processeur.
+L'authentification sur un système informatique, se fait traditionnellement par un identifiant et un mot de passe. Ce mode d'authentification constitue le principal moyen d'authentification sur les systèmes informatiques. Sa simplicité a contribué à son adoption. Néanmoins, il est possible d'usurper l'identité de quelqu'un grâce à la connaissance de ces paramètres. En effet, certains identifiants sont standardisés comme les identifiants administrateurs, par exemple "root" sur les systèmes Unix. Malheureusement, le mot de passe est lui aussi attaquable. La puissance de calcul disponible a beaucoup augmenté. L'utilisation des cartes graphiques et de cluster pour le "cracking" a diminué sensiblement le temps des attaques comme le montre \cite{6507505}. Il montre des performances multipliées par 40 par rapport à la force brute sur processeur.
 
 \subsubsection{Les précédentes tentatives}
 
@@ -325,9 +324,7 @@ A défaut de créer de nouvelles techniques, les recherches se portent la fusion
 Il existe déjà des papiers sur les différentes méthodes d'authentification.
 Le premier objectif est d'établir un comparatif des techniques existantes. Notre comparatif s'effectuera sur différents critères. Par exemple, les moyens techniques nécessaires, les nombres d'échantillons nécessaires à l'apprentissage, la précision sont des critères utilisables.
 
-
-
-Nous pourrons essayer de trouver de nouvelles méthodes. En effet, nous pouvons tenter de créer une méthode d'authentification. Toutes les méthodes n'ont pas été découvertes. Néanmoins, nos moyens sont limités. A défaut de créer une nouvelle méthode, nous pouvons fusionner des méthodes préexistantes.
+Comme trouver de nouvelles méthodes d'authentification semble assez délicat, nous allons fusionner des méthodes préexistantes. Nous allons choisir les techniques les plus fiables et les plus simples pour créer une solution hybride.
 
 \section{État de l'art}
 
@@ -413,18 +410,18 @@ La couverture lieu de travail et depuis longtemps une réalité mais on constate
 
 Le wifi s'appuie sur des ondes radios, il est possible de voir les points d'accès WiFi Hotspot comme des balises rappelant les radars. L'émission des ondes et leur captation par un système approprié ou le routeur en lui-même permet d'estimer la qualité du signal et donc de déduire la présence d'obstacles. Cette méthode est déjà utilisée pour optimiser le débit et la couverture du réseau en milieu clos \cite{1611.02049v1}.
 
-Si la surveillance des réseau wifi rend possible la localisation en intérieur de différents périphériques notamment grâce à leur adresse MAC, l'extension de la possibilité de détecter les obstacles a fait naître l'idée de l'utilisation des points d'accès wifi comme balise de détection de personne. 
+Si la surveillance des réseau wifi rend possible la localisation en intérieur de différents périphériques notamment grâce à leur adresse MAC, l'extension de la possibilité de détecter les obstacles a fait naître l'idée de l'utilisation des points d'accès wifi comme balise de détection de personne.
 
 La surveillance des périphériques connectés ou non au réseau donne déjà une indication quant à la présence d'une personne, toutefois il n'assure pas que la personne est bien présente physiquement dans les lieux et impose de plus la mise en place d'une table de relation faisant le lien entre les personnes et les périphériques qu'elles possèdent.
 
-Utiliser le wifi comme support d'identification des personnes est une idée très récente reposant sur des travaux avant-gardistes en utilisant des technologies avancées. Ceci explique sa diffusion réduite et son aspect expérimental. 
+Utiliser le wifi comme support d'identification des personnes est une idée très récente reposant sur des travaux avant-gardistes en utilisant des technologies avancées. Ceci explique sa diffusion réduite et son aspect expérimental.
 
 Ces travaux s'appuient sur les méthodes d'identification humaine originellement réservé au domaine biométrique (empreinte digitale, voix) et ont marqué une avancée importante dans le domaine de l'interaction homme-machine. \cite{1608.03430}
 
-L'identification humaine grâce aux canaux wifi ouvre la voie à une méthode moins intrusive que celles actuellement connues et nécessitant la présence proche de la personne ou provoquant un arrêt de son activité pour s'identifier. Une autre problématique est aussi la disponibilité des outils permettant la capture. 
+L'identification humaine grâce aux canaux wifi ouvre la voie à une méthode moins intrusive que celles actuellement connues et nécessitant la présence proche de la personne ou provoquant un arrêt de son activité pour s'identifier. Une autre problématique est aussi la disponibilité des outils permettant la capture.
 
 Si des essais ont été effectués avec des standards radar classiques, leur diffusion dans le domaine public ou professionnel reste limité au cercle des avertis. Utiliser le wifi comme support de capture permet donc de s'affranchir de cette contrainte et de disposer de tout un panel de points de collecte déjà déployés dans divers environnements (bureaux, maisons)
- 
+
 \subsubsection{Présentation}
 
 Les mesures s'appuient sur les reliquat générés par une personne au niveau des ondes wifi. La corpulence la manière de se déplacer ou encore les gestes effectués permettre une différenciation précise entre divers individus.
@@ -463,7 +460,7 @@ La vie privée est aussi préservée de par l'absence de données identifiantes.
 
 \subsubsection{Limites de la proposition}
 
-La solution présentée met en avant certaines limites dans un environnement radio bruyant. La collecte est alors plus difficile et les résultats seront moins précis. Un travail supplémentaire de nettoyage peut être effectué mais avec un risque de perte de précision. 
+La solution présentée met en avant certaines limites dans un environnement radio bruyant. La collecte est alors plus difficile et les résultats seront moins précis. Un travail supplémentaire de nettoyage peut être effectué mais avec un risque de perte de précision.
 
 Les environnements avec beaucoup de personnes rendent aussi la capture des mouvements plus complexes puisque le système n'a pas conscience. De la multiplicité des personnes se focalisant exclusivement sur les mouvements défauts positifs peut-être relever. À noter aussi que ces travaux se focaliser exclusivement sur les attitudes durant la marche ce qui peut être non fiable dans un environnement professionnel ou les personnes sont assises à leur bureau.
 
@@ -475,7 +472,7 @@ Afin de tester nos hypothèses, une preuve de concept est en cours de développe
  Il a été développé pour les environnements Microsoft Windows et Canonical Ubuntu 16.10.
  Il permet notamment de récupérer les différentes frappes au clavier et de les corréler avec l'activité système, les processus etc.
  Pour prendre une décision, nous développons une application permettant de réaliser un apprentissage.
- 
+
  Cette approche vise à identifier une corrélation en le rythme de frappe et l'activité de l'utilisateur, dans le but de créer une tendance permettant de l'identifier dans le futur.
 
 \section{Conclusion}
@@ -491,5 +488,3 @@ Les premiers résultats ont permis d'aboutir sur un ensemble de données d'appre
 
 % that's all folks
 \end{document}
-
-
