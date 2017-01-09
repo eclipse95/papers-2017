@@ -38,9 +38,9 @@
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
- % \usepackage[pdftex]{graphicx}
+ \usepackage[pdftex]{graphicx}
  % declare the path(s) where your graphic files are
- % \graphicspath{{../pdf/}{../jpeg/}}
+ %\graphicspath{{../pdf/}{../jpeg/}}
  % and their extensions so you won't have to specify these with
  % every instance of \includegraphics
  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
@@ -48,7 +48,7 @@
  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
  % will default to the driver specified in the system graphics.cfg if no
  % driver is specified.
- % \usepackage[dvips]{graphicx}
+ \usepackage[dvips]{graphicx}
  % declare the path(s) where your graphic files are
  % \graphicspath{{../eps/}}
  % and their extensions so you won't have to specify these with
@@ -223,6 +223,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{smartdiagram}
+\usepackage{tikz}
+\usepackage[french]{babel}
+\usetikzlibrary{shapes,arrows}
+\usesmartdiagramlibrary{additions}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20,
+    text width=6em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
 
 % *** Do not adjust lengths that control margins, column widths, etc. ***
 % *** Do not use packages that alter fonts (such as pslatex).     ***
@@ -474,6 +483,24 @@ Afin de tester nos hypothèses, une preuve de concept est en cours de développe
  Pour prendre une décision, nous développons une application permettant de réaliser un apprentissage.
 
  Cette approche vise à identifier une corrélation en le rythme de frappe et l'activité de l'utilisateur, dans le but de créer une tendance permettant de l'identifier dans le futur.
+
+ \begin{figure}[!htb]
+\begin{tikzpicture}[node distance = 2.7cm, auto]
+  \node [block] (init) {Evénements clavier};
+  \node [block, right of=init, distance = 1cm] (collect) {Collecte};
+  \node [block, right of=collect, distance = 1cm] (decision) {Décision};
+  \node [block, below of=decision, distance = 1cm] (learn) {Apprentissage};
+
+  \path [line] (init) -- (collect);
+  \path [line] (collect) -- (decision);
+  \path [line] (collect) -- (learn);
+  \path [line] (learn) -- (decision);
+
+\end{tikzpicture}
+   \centering
+   \caption{Schéma de fonction de la preuve de concept}
+   \label{}
+ \end{figure}
 
 \section{Conclusion}
 Les premiers résultats ont permis d'aboutir sur un ensemble de données d'apprentissage. Cet ensemble est actuellement utilisé dans un réseau de neurones qui permettra de potentiellement établir une tendance servant à l'identification d'un utilisateur.
