@@ -243,7 +243,6 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-
 \begin{document}
 %
 % paper title
@@ -253,7 +252,6 @@
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
 \title{Méthode de détection multi-modale de comportements anormaux\\ en sécurité informatique}
-
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -273,17 +271,10 @@ Email: benoit.parrein@univ-nantes.fr} % polytech.univ-nantes.fr est un alias
 \IEEEauthorblockN{Remi Lehn}
 \IEEEauthorblockA{Polytech Nantes\\
 Email: remi.lehn@univ-nantes.fr}
-
 }
-
-
-
 
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
-
-
-
 
 % make the title area
 \maketitle
@@ -295,9 +286,6 @@ L'authentification est une phase importante. Elle permet d'autoriser ou non un u
 \end{abstract}
 
 % no keywords
-
-
-
 
 % For peer review papers, you can put extra information on the cover
 % page as needed:
@@ -402,78 +390,6 @@ Cette technique présentes quelques inconvénients. L'utilisation de la souris n
 Dans \cite{7477228}, les résultats sont relativement décevants, la précision est bornée entre 45\% et 60\%. Cela implique la nécessité de l'utiliser en tant que technique complémentaire et/ou supplémentaire.
 
 Dans \cite{fridman2015multi}, le nombre d'évènements utilisés est relativement important. Le stockage de tous ces évènements doit avoir un coût. Le coût peut être en stockage et/ou en temps de collecte avant apprentissage.
-
-\subsection{Identification à partir des réseaux wifi} % B
-
-La diversification et la multiplicité des moyens d'interactions utilisés par les personnes souhaitant interagir avec le monde numérique ce sont depuis quelques années beaucoup d'accélérés.
-
-En témoigne l'augmentation des ventes de matériel biométrique simple où la diffusion des systèmes d'authentification avec jeton par exemple jeton RSA.
-
-Si des systèmes d'acquisition externe permettre en effet de récolter des informations d'identification ou d'authentification, il convient de constater que de nombreuses outils déjà présents dans le milieu personnel ou professionnel en informatique peuvent servir de vecteurs complémentaires d'acquisition de l'information et peuvent parfois même voir leur usage évoluer.
-
-\subsubsection{Présentation}
-
-La technologie WiFi est intégrée depuis plusieurs années dans le monde de l'informatique et aujourd'hui est de retour dans les innovations de par l'explosion de l'utilisation de périphériques mobiles (smartphones, tablettes) mais aussi de l'arrivée de l'internet des objets (IOT) \cite{wifialliance}
-
-La couverture lieu de travail et depuis longtemps une réalité mais on constate aujourd'hui l'acquisition de nouveau terrain notamment les villes par les offres de wifi gratuit ou encore la simplicité d'implémentation à la maison par les fonctions de routeur wifi offerts par les modems des principaux opérateurs.
-
-Le wifi s'appuie sur des ondes radios, il est possible de voir les points d'accès WiFi Hotspot comme des balises rappelant les radars. L'émission des ondes et leur captation par un système approprié ou le routeur en lui-même permet d'estimer la qualité du signal et donc de déduire la présence d'obstacles. Cette méthode est déjà utilisée pour optimiser le débit et la couverture du réseau en milieu clos \cite{1611.02049v1}.
-
-Si la surveillance des réseau wifi rend possible la localisation en intérieur de différents périphériques notamment grâce à leur adresse MAC, l'extension de la possibilité de détecter les obstacles a fait naître l'idée de l'utilisation des points d'accès wifi comme balise de détection de personne.
-
-La surveillance des périphériques connectés ou non au réseau donne déjà une indication quant à la présence d'une personne, toutefois il n'assure pas que la personne est bien présente physiquement dans les lieux et impose de plus la mise en place d'une table de relation faisant le lien entre les personnes et les périphériques qu'elles possèdent.
-
-Utiliser le wifi comme support d'identification des personnes est une idée très récente reposant sur des travaux avant-gardistes en utilisant des technologies avancées. Ceci explique sa diffusion réduite et son aspect expérimental.
-
-Ces travaux s'appuient sur les méthodes d'identification humaine originellement réservé au domaine biométrique (empreinte digitale, voix) et ont marqué une avancée importante dans le domaine de l'interaction homme-machine. \cite{1608.03430}
-
-L'identification humaine grâce aux canaux wifi ouvre la voie à une méthode moins intrusive que celles actuellement connues et nécessitant la présence proche de la personne ou provoquant un arrêt de son activité pour s'identifier. Une autre problématique est aussi la disponibilité des outils permettant la capture.
-
-Si des essais ont été effectués avec des standards radar classiques, leur diffusion dans le domaine public ou professionnel reste limité au cercle des avertis. Utiliser le wifi comme support de capture permet donc de s'affranchir de cette contrainte et de disposer de tout un panel de points de collecte déjà déployés dans divers environnements (bureaux, maisons)
-
-\subsubsection{Présentation}
-
-Les mesures s'appuient sur les reliquat générés par une personne au niveau des ondes wifi. La corpulence la manière de se déplacer ou encore les gestes effectués permettre une différenciation précise entre divers individus.
-
-Cette approche permet une identification précise sans toutefois mettre en danger la vie privée comparée à d'autres méthodes.
-
-En effet les premières tentatives de collecte de l'attitude et du comportement basé sur les mouvements nécessitaient l'utilisation de caméras, ce qui impose des contraintes tels que le besoin de ligne de vue mais aussi la perte de vie privée de par la nécessité de capter continuellement l'attitude d'une personne.
-
-La notion pratique et aussi perdu par la nécessité de placer plusieurs caméras à différents endroits le Cousson retrouve alors augmenté quand bien même cette méthode a prouvé son efficacité.
-
-Ces travaux ont toutefois servi de point de départ à la constitution d'un ensemble de données permettant d'identifier les points de posture d'attitude et de mouvements clés à l'identification précise d'une personne.
-
-Cette utilisation du Wifi n'est toutefois pas nouvelle puisque des produits s'appuyant sur le wifi permettent déjà d'évaluer la chute de personne dans le milieu industriel.
-
-Plusieurs méthode et outils sont toutefois nécessaire à l'extraction d'informations.
-
-Le premier outil utilisé pour ses détections est le channel state information (CSI). Il permet d'étudier la manière d'un signal se propage dans un milieu connu en analysant par exemple les pertes de signal avec la distance.
-
-Le second outil est l'analyse en composantes principales. Issu du monde géométrique et statistiques cette méthode permet de sortir des informations principales d'un nuage de variables corrélées. Ici son application concernant la dispersion des ondes radio permet d'ordonner un nuage de multiples points. N'ayant pas grande importance ensemble, l'ACP mettra en exergue les tendances de dispersion menant à la constitution d'un modèle.
-
-La transformée en ondelettes discrète (DWT : discrete wevelet transform) permet de capturer la fréquence et la position de points dans le temps. Par transformations successives, il devient possible de reconstruire une image en deux ou trois dimensions.
-
-Enfin le Dynamic Time Warping (DTW) déformation temporelle dynamique permet la mesure de similarité entre deux suites. Cet algorithme sert notamment à combler les vides de captation possible dans un environnement bruyant radiologiquement.
-
-La combinaison de ces quatre outils associés à des interfaces wifi compatible permet la collecte de données, la suppression du bruit ambiant et l'extraction d'une onde correspondant à l'activité d'une personne.
-
-La capacité sommaire mais toutefois existante des ondes wifi à traverser les surfaces peu absorbante permet l'implantation de ces points de collecte en divers endroits accessible.
-
-De plus la corrélation entre une personne et son "bruit radio" n'est pas nécessaire.
-
-\subsubsection{Intérêts de la proposition}
-
-Cette méthode a été testée sur un panel de 9 personnes et indique des résultats très probants. La mise en place de cette solution requiert la mise en place de sondes, mais l'analyse des résultats peut-être fait grâce à une puissance de calcul limité. La création d'une signature initiale peut être fait relativement rapidement par un processus de calibration requérant que les personne effectuent une certaine suite de mouvements connus à l'avance par le système.
-
-La vie privée est aussi préservée de par l'absence de données identifiantes. Seule la corrélation entre les résultats et les personnes peut remettre en cause ce principe mais il a été prouvé que cela n'était pas nécessaire. La mesure servant de signature et donc à l'identification.
-
-\subsubsection{Limites de la proposition}
-
-La solution présentée met en avant certaines limites dans un environnement radio bruyant. La collecte est alors plus difficile et les résultats seront moins précis. Un travail supplémentaire de nettoyage peut être effectué mais avec un risque de perte de précision.
-
-Les environnements avec beaucoup de personnes rendent aussi la capture des mouvements plus complexes puisque le système n'a pas conscience. De la multiplicité des personnes se focalisant exclusivement sur les mouvements défauts positifs peut-être relever. À noter aussi que ces travaux se focaliser exclusivement sur les attitudes durant la marche ce qui peut être non fiable dans un environnement professionnel ou les personnes sont assises à leur bureau.
-
-Enfin si ce système permet de différencier les personnes dans un environnement, il ne permet toutefois pas leur authentification. Il est donc insuffisant pour prétendre à être un moyen de sécuriser correctement une infrastructure.
 
 \section{Preuve de concept}
 Afin de tester nos hypothèses, une preuve de concept est en cours de développement.
