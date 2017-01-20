@@ -285,13 +285,10 @@
 Le mot de passe est le moyen d'authentification le plus courant pour accéder à un système d'information.
  Malheureusement, le mot de passe n'est pas un élément sûr, il peut être voler par exemple.
  Afin d'augmenter la sécurité lors de l'authentification, nous cherchons un moyen d'authentification ne reposant pas uniquement sur le mot de passe.
- Notre solution s'appuie sur une combinaison d'éléments et sur une validation en continue plutôt qu'une simple vérification à l'accès du système.
+ Notre solution s'appuie sur une combinaison d'éléments comme des métriques issues de la frappe au clavier, et sur une validation en continue plutôt qu'une simple vérification à l'accès du système.
 \end{abstract}
 
 % no keywords
-
-
-
 
 % For peer review papers, you can put extra information on the cover
 % page as needed:
@@ -301,33 +298,62 @@ Le mot de passe est le moyen d'authentification le plus courant pour accéder à
 %
 % For peerreview papers, this IEEEtran command inserts a page break and
 % creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
-
-
+%\IEEEpeerreviewmaketitle
 
 \section{Introduction}
-La sécurité en informatique est le deuxième aspect le plus important après la disponibilité. Les logiciels de sécurité habituels (antivirus, pare-feu, etc.) ne suffisent plus pour détecter les menaces. Par exemple, une personne ayant un accès physique peut contourner le couple identifiant - mot de passe et ainsi dérober des données. La détection de comportements anormaux permet d'ajouter une strate supplémentaire de sécurité. La détection de comportements essaye de déterminer si les actions de l'utilisateur sont conformes à un profil établi. Le profil peut contenir par exemple les processus, l'activité réseau, les appels systèmes. La difficulté intervient lors de la création du profil. Si le profil est statique, le moindre comportement légèrement déviant peut déclencher une alarme et augmenter le nombre de faux-positifs. S'il est trop dynamique, il risque de rester dans une phase d'apprentissage indéfiniment et fera perdre en granularité de détection (seuls les événements vraiment déviant seront détectés). Dans tous les cas, la détection de comportement anormaux relève d'un problème d'apprentissage et de décision. Il convient aussi de définir une méthode la moins intrusive possible en terme de vie privée. Le détournement d'un système de capture des frappes de clavier peut être facilement détournée et une attention particulière sera prêtée à la méthode d'anonymisation de données récupérée lors des différentes expérimentations. Nous proposons tout d'abord de faire un rapide état de l'art sur le sujet. A partir d'une sélection de méthodes, nous allons réaliser les premières étapes une preuve de concept.
+
+La sécurité en informatique est devenue le deuxième aspect le plus important après le bon fonctionnement.
+ Les logiciels de sécurité habituels (antivirus, pare-feu, etc.) ne suffisent plus pour détecter les menaces.
+ Par exemple, une personne ayant un accès physique peut contourner le couple identifiant - mot de passe et ainsi dérober des données.
+ La détection de comportements anormaux permet d'ajouter une strate supplémentaire de sécurité.
+ La détection de comportements essaye de déterminer si les actions de l'utilisateur sont conformes à un profil établi.
+ Le profil peut contenir par exemple les processus, l'activité réseau, les appels systèmes.
+ La difficulté intervient lors de la création du profil.
+ Si le profil est statique, le moindre comportement légèrement déviant peut déclencher une alarme et augmenter le nombre de faux-positifs.
+ S'il est trop dynamique, il risque de rester dans une phase d'apprentissage indéfiniment et fera perdre en granularité de détection (seuls les événements vraiment déviant seront détectés).
+ Dans tous les cas, la détection de comportement anormaux relève d'un problème d'apprentissage et de décision.
+ Il convient aussi de définir une méthode la moins intrusive possible en terme de vie privée.
+ Le détournement d'un système de capture des frappes de clavier peut être facilement détournée et une attention particulière sera prêtée à la méthode d'anonymisation de données récupérée lors des différentes expérimentations.
+ Nous proposons tout d'abord de faire un rapide état de l'art sur le sujet.
+ A partir d'une sélection de méthodes, nous allons réaliser les premières étapes une preuve de concept qui porte sur l'identification d'utilisateur.
 
 \section{Présentation de la problématique}
 
 \subsection{De la faiblesse des mots de passe}
 
-L'authentification sur un système informatique, se fait traditionnellement par un identifiant et un mot de passe. Ce mode d'authentification constitue le principal moyen d'authentification sur les systèmes informatiques. Sa simplicité a contribué à son adoption. Néanmoins, il est possible d'usurper l'identité de quelqu'un grâce à la connaissance de ces paramètres. En effet, certains identifiants sont standardisés comme les identifiants administrateurs, par exemple "root" sur les systèmes Unix. Malheureusement, le mot de passe est lui aussi attaquable. La puissance de calcul disponible a beaucoup augmenté. L'utilisation des cartes graphiques et de clusters pour la récupération de mot de passe a diminué sensiblement le temps des attaques avec des performances multipliées par 40 par rapport à la force brute sur processeur \cite{6507505}.
+L'authentification sur un système informatique, se fait traditionnellement par un identifiant et un mot de passe.
+ Ce mode d'authentification constitue le principal moyen d'authentification sur les systèmes informatiques.
+ Sa simplicité a contribué à son adoption.
+ Néanmoins, il est possible d'usurper l'identité de quelqu'un grâce à la connaissance de ces paramètres.
+ En effet, certains identifiants sont standardisés comme les identifiants administrateurs, par exemple "root" sur les systèmes Unix.
+ Malheureusement, le mot de passe est lui aussi attaquable.
+ La puissance de calcul disponible a beaucoup augmenté.
+ L'utilisation des cartes graphiques et de clusters pour la récupération de mot de passe a permis des performances multipliées par 40 par rapport à la force brute sur processeur \cite{6507505}.
 
 \subsubsection{Les précédentes tentatives}
 
-Diverses alternatives ont été étudiées et développées. Ces alternatives sont axées sur l'identification biométrique, l'authentification matérielle et d'autres éléments mémorisables. Par exemple, l'empreinte digitale peut être utilisée pour identifier et authentifier une personne. Mais l'empreinte digitale est une donnée personnelles, son utilisation est soumise à restriction. Le résultat n'est pas exact. Comme décrit dans \cite{10.1109/MC.2012.364} , l'identification biométrique évalue la probabilité qu'un échantillon soit proche d'autres échantillons de référence et prend une décision. Ces alternatives sont potentiellement complexes à mettre en place et ne garantissent pas nécessairement de résultats. Un système d'authentification seul est insuffisant. Même les systèmes biométriques sont contournables comme exposé dans \cite{duc2009your}. Un autre problème majeur de l'utilisation des sytèmes d'authentification biométrique est l'impossibilité de révoquer les accès car une personne ne dispose que d'un jeu limité d'empreinte digitale non remplaçable.
+Diverses alternatives ont été étudiées et développées.
+ Ces alternatives sont axées sur l'identification biométrique, l'authentification matérielle et d'autres éléments mémorisables.
+ Par exemple, l'empreinte digitale peut être utilisée pour identifier et authentifier une personne.
+ Mais l'empreinte digitale est une donnée personnelle, son utilisation est soumise à restriction.
+ De plus, l'exactitude du résultat n'est pas garantie.
+ Comme décrit dans \cite{10.1109/MC.2012.364}, l'identification biométrique évalue la probabilité qu'un échantillon soit proche d'autres échantillons de référence et prend une décision.
+ Ces alternatives sont potentiellement complexes à mettre en place et ne garantissent pas nécessairement de résultats.
+ Un système d'authentification seul est insuffisant.
+ Même les systèmes biométriques sont contournables comme exposé dans \cite{duc2009your}.
+ Un autre problème majeur de l'utilisation des systèmes d'authentification biométrique est l'impossibilité de révoquer les accès car une personne ne dispose que d'un jeu limité d'empreinte digitale non remplaçable.
 
 \subsubsection{A la fusion des techniques}
 
-A défaut de créer de nouvelles techniques, les recherches se portent la fusion de techniques existantes. Par exemple, dans \cite{7371386}, la dynamique de la frappe de clavier et la reconnaissance faciale sont utilisées. Les deux techniques ont des précisions différentes. La difficulté intervient lors de la fusion des données et de la prise de décision. Il faut pondérer le poids de chaque métrique pour aboutir à une tendance permettant d'identifier la personne.
+A défaut de créer de nouvelles techniques, les recherches se portent la fusion de techniques existantes. Par exemple dans \cite{7371386}, la dynamique de la frappe de clavier et la reconnaissance faciale sont utilisées. Les deux techniques ont des précisions différentes. La difficulté intervient lors de la fusion des données et de la prise de décision. Il faut pondérer le poids de chaque métrique pour aboutir à une tendance permettant d'identifier la personne.
 
 \section{Plan de l'étude}
 
-Il existe déjà des papiers sur les différentes méthodes d'authentification.
-Le premier objectif est d'établir un comparatif des techniques existantes. Notre comparatif s'effectuera sur différents critères. Par exemple, les moyens techniques nécessaires, les nombres d'échantillons nécessaires à l'apprentissage, la précision sont des critères utilisables.
-
-C'est cette voie qui sera suivie pour créer une solution hybride.
+Il existe déjà des travaux sur les différentes méthodes d'authentification.
+ Le premier objectif est d'établir un comparatif des techniques existantes.
+ Notre comparatif s'effectuera sur différents critères.
+ Par exemple, les moyens techniques nécessaires, les nombres d'échantillons nécessaires à l'apprentissage, la précision sont des critères utilisables.
+ C'est cette voie qui sera suivie pour créer une solution hybride.
 
 \section{État de l'art}
 
@@ -338,21 +364,21 @@ Le clavier est un des premiers périphérique d'un ordinateur. Son principe n'a 
 \subsubsection{Présentation}
 
 Le clavier est présent sur quasiment sur tous les ordinateurs. De plus, la disposition des touches est relativement standardisée.
-L'utilisation de la frappe de clavier comme moyen d'identification n'est pas un concept "récent". En 1993, \cite{brown1993user} utilise ce concept pour ce qui semble la première fois en mesurant le temps de pression et le temps de relâche de chaque touche.
+L'utilisation de la frappe de clavier comme moyen d'identification n'est pas un concept "récent". En 1993, Brown et al. \cite{brown1993user} utilise ce concept pour ce qui semble la première fois en mesurant le temps de pression et le temps de relâche de chaque touche.
 
 La dynamique des frappes n'est pas utilisable dès sa mise en place, un temps d'initialisation est requis. Un apprentissage est nécessaire pour utiliser la dynamique des frappes. La quantité d'échantillons dépend de la méthode de décision. La méthode de décision peut être statistique ou par réseau de neurones (comme dans \cite{7435705}).
 
 \subsubsection{Intérêt de la proposition}
 L'identification par la dynamique des frappes est une technique intéressante. Le clavier est un périphérique répandu. Il est donc plus facile d'intégrer cette technique sur des équipements existants. Certaines métriques restent valables même sur des claviers virtuels.
 
-Sur les systèmes dérivés de Unix, la mise en \oe{}uvre semble relativement simple. Dans \cite{brown1993user}, ils utilisent une application pour d'intercepter les événements depuis le serveur X.org.
+Sur les systèmes dérivés d'Unix, la mise en \oe{}uvre semble relativement simple. Dans \cite{brown1993user}, ils utilisent une application pour d'intercepter les événements depuis le serveur X.org.
 
 De nombreuses expérimentations ont déjà été effectué. La technique est donc relativement éprouvée. Les résultats sont généralement bons avec cette technique. La précision garantie est en moyenne proche des 80\%.
 
 \subsubsection{Limites de la proposition}
-L'identification par la dynamique des frappes n'a pas que des avantages. Comme le résume \cite{1341408}, les résultats sont très variables. Le taux est influencé par la méthode de décision. Comme le montre \cite{brown1993user}, parfois, il n'y a pas de vraie différence entre une méthode de décision triviale comme la distance géométrique et une méthode de décision plus complexe comme un réseau de neurones avec rétro-propagation.
+L'identification par la dynamique des frappes n'a pas que des avantages. Comme le résume \cite{1341408}, les résultats sont très variables. Le taux est influencé par la méthode de décision. Comme le montre Brown et al.\cite{brown1993user}, parfois, il n'y a pas de vraie différence entre une méthode de décision triviale comme la distance géométrique et une méthode de décision plus complexe comme un réseau de neurones avec rétro-propagation.
 
-Le nombre d'échantillons a une grande important et varie en fonction de la méthode de décision. Le nombre d'échantillons nécessaire n'est malheureusement pas prédéfini. De plus, la base d'apprentissage doit être régulièrement mise à jour. La dynamique frappe étant une donnée biométrique, elle dépend de l'état biologique de l'utilisateur à un moment t. Ces particularités peuvent modifier cet état et donc la précision de l'identification. Les effets d'un changement de modèle de clavier n'ont pas été évalué.
+Le nombre d'échantillons a une grande importance et varie en fonction de la méthode de décision. Le nombre d'échantillons nécessaire n'est malheureusement pas prédéfini. De plus, la base d'apprentissage doit être régulièrement mise à jour. La dynamique de frappe étant une donnée biométrique, elle dépend de l'état biologique de l'utilisateur à un instant t. Ces particularités peuvent modifier cet état et donc la précision de l'identification. Les effets d'un changement de modèle de clavier n'ont pas été évalué.
 
 Cette technique, si elle n'est pas encadrée, peut devenir dangereuse car il est possible de modifier le programme pour le transformer en enregistreur de frappes (keylogger).
 
@@ -368,7 +394,7 @@ Le son des frappes de clavier n'a pas été beaucoup étudié. A notre connaissa
 \subsubsection{Intérêt de la proposition}
 Le son de la frappe de clavier peut être facilement intégré aux ordinateurs portables. En effet, la plupart des ordinateurs portables sont doté d'un microphone intégré. Pour les ordinateurs fixes, la situation est complexe. Tous les ordinateurs fixes n'ont pas de microphone.
 
-Les résultats des expérimentations sont bons. Dans \cite{7477360}, le moins bon résultat est 88\% de précision. Mais les tests sont effectués uniquement sur 4 groupes distincts.
+Les résultats des expérimentations sont bons. Dans \cite{7477360}, le moins bon résultat est 88\% de précision. Mais les tests sont effectués uniquement sur des groupes restreints de sujets.
 
 \subsubsection{Limites de la proposition}
 Cette technique a quelques inconvénients. La capture du son n'a pas été testé dans un milieu bruité. Dans un environnement type "open space", le micro pourrait capturer le bruit d'un autre clavier.
